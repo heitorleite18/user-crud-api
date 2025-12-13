@@ -1,3 +1,4 @@
+import "dotenv/config";
 import Fastify from "fastify";
 import appRoutes from "./routes/routes";
 import jwt from "@fastify/jwt";
@@ -6,7 +7,7 @@ import { FastifyRequest, FastifyReply } from "fastify";
 const app = Fastify();
 
 app.register(jwt, {
-  secret: "super-secret-key", //TODO: depois trocar para .env
+  secret: process.env.JWT_SECRET as string, //TODO: depois trocar para .env
 });
 
 app.decorate(
